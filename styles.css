@@ -279,36 +279,86 @@ body {
     padding-left: var(--spacing-24);
 }
 
-/* Image Gallery - About Page */
-.image-gallery-about {
+/* Image Carousel - About Page */
+.image-carousel {
     margin-top: var(--spacing-32);
 }
 
-.image-gallery-about h2 {
-    color: var(--color-primary);
-    font-size: var(--font-size-24);
-    margin-bottom: var(--spacing-24);
-}
-
-.gallery-grid-about {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: var(--spacing-16);
-}
-
-.gallery-img-about {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+.carousel-container {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
     border-radius: var(--radius-md);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.gallery-img-about:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+.carousel-slide {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background-color: #f0f0f0;
+}
+
+.carousel-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-img.active {
+    opacity: 1;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(100, 66, 214, 0.8);
+    color: white;
+    border: none;
+    padding: var(--spacing-16);
+    cursor: pointer;
+    font-size: var(--font-size-20);
+    z-index: 10;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(100, 66, 214, 1);
+}
+
+.carousel-btn.prev {
+    left: var(--spacing-16);
+}
+
+.carousel-btn.next {
+    right: var(--spacing-16);
+}
+
+.carousel-dots {
+    text-align: center;
+    padding: var(--spacing-16) 0;
+}
+
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin: 0 4px;
+    background-color: #ddd;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.dot.active,
+.dot:hover {
+    background-color: var(--color-primary);
 }
 
 /* Pitching Page */
