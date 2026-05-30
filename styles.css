@@ -364,13 +364,36 @@ body {
 /* Pitching Page */
 .pitching-intro {
     text-align: center;
-    margin-bottom: var(--spacing-32);
+    margin-bottom: var(--spacing-24);
 }
 
 .pitching-heading {
     color: var(--color-primary);
     font-size: var(--font-size-24);
     font-weight: 700;
+}
+
+.pitching-description {
+    max-width: 800px;
+    margin: 0 auto var(--spacing-32);
+    padding: var(--spacing-24);
+    background-color: white;
+    border-radius: var(--radius-md);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    line-height: 1.7;
+}
+
+.pitching-description ul {
+    margin: var(--spacing-16) 0;
+    padding-left: var(--spacing-32);
+}
+
+.pitching-description li {
+    margin-bottom: var(--spacing-8);
+}
+
+.pitching-description strong {
+    color: var(--color-primary);
 }
 
 .video-grid {
@@ -409,6 +432,16 @@ body {
 .video-time {
     color: #6B7280;
     font-size: var(--font-size-14);
+}
+
+.video-progress {
+    margin-top: var(--spacing-12);
+    padding-top: var(--spacing-12);
+    border-top: 1px solid #E5E7EB;
+    color: #374151;
+    font-size: var(--font-size-14);
+    font-style: italic;
+    text-align: left;
 }
 
 /* Footer */

@@ -1,0 +1,3 @@
+march: Enhanced curveball mechanics, refined cross step, and improved arm positioning from belly to finish across.
+april: Adjusted launch/load mechanics with new hand starting position, eliminated unnecessary rock motion.
+may: Strengthened leg drive and extended push-off distance for increased power.

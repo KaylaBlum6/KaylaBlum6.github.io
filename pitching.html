@@ -34,6 +34,10 @@
                     <h2 class="pitching-heading">what is pitching</h2>
                 </div>
 
+                <div class="pitching-description" id="pitching-description">
+                    <p>Loading...</p>
+                </div>
+
                 <div class="video-grid">
                     <div class="video-card">
                         <video controls class="pitching-video">
@@ -51,6 +55,7 @@
                         </video>
                         <h3 class="video-title">March</h3>
                         <p class="video-time">Time spent 13 hours</p>
+                        <p class="video-progress" data-month="march">Loading...</p>
                     </div>
 
                     <div class="video-card">
@@ -60,6 +65,7 @@
                         </video>
                         <h3 class="video-title">April</h3>
                         <p class="video-time">Time spent 12 hours</p>
+                        <p class="video-progress" data-month="april">Loading...</p>
                     </div>
 
                     <div class="video-card">
@@ -69,6 +75,7 @@
                         </video>
                         <h3 class="video-title">May</h3>
                         <p class="video-time">Time spent 14 hours</p>
+                        <p class="video-progress" data-month="may">Loading...</p>
                     </div>
                 </div>
             </div>
@@ -80,5 +87,58 @@
             <p>&copy; 2026 Kayla Culminating Project</p>
         </div>
     </footer>
+
+    <script>
+    // Load pitching description
+    fetch('content/pitching-description.txt')
+        .then(response => response.text())
+        .then(text => {
+            const container = document.getElementById('pitching-description');
+            // Convert bullet points to HTML list
+            const paragraphs = text.split('\n\n');
+            let html = '';
+
+            paragraphs.forEach(para => {
+                if (para.includes('•')) {
+                    // Convert bullet list
+                    const items = para.split('\n').filter(line => line.includes('•'));
+                    html += '<ul>';
+                    items.forEach(item => {
+                        html += `<li>${item.replace('•', '').trim()}</li>`;
+                    });
+                    html += '</ul>';
+                } else {
+                    // Regular paragraph, highlight "internal rotation"
+                    const highlighted = para.replace('internal rotation', '<strong>internal rotation</strong>');
+                    html += `<p>${highlighted}</p>`;
+                }
+            });
+
+            container.innerHTML = html;
+        })
+        .catch(err => console.error('Error loading description:', err));
+
+    // Load monthly progress
+    fetch('content/monthly-progress.txt')
+        .then(response => response.text())
+        .then(text => {
+            const progressMap = {};
+            text.split('\n').forEach(line => {
+                if (line.trim()) {
+                    const [month, progress] = line.split(':').map(s => s.trim());
+                    progressMap[month] = progress;
+                }
+            });
+
+            // Update each video card
+            document.querySelectorAll('[data-month]').forEach(element => {
+                const month = element.getAttribute('data-month');
+                if (progressMap[month]) {
+                    element.textContent = `Improvements: ${progressMap[month]}`;
+                }
+            });
+        })
+        .catch(err => console.error('Error loading progress:', err));
+    </script>
 </body>
 </html>
