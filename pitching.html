@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pitching - Kayla Culminating</title>
+    <title>Pitching — Kayla's Culminating Project</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Roboto:wght@100..900&family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Grand+Hotel&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <nav class="nav">
         <div class="nav-container">
-            <h1 class="nav-logo">Kayla Culminating</h1>
+            <a href="index.html" class="nav-logo" style="text-decoration:none;">Kayla <span class="logo-script">culminating</span></a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link">Reflection</a></li>
                 <li><a href="pitching.html" class="nav-link active">Pitching</a></li>
@@ -22,120 +22,145 @@
     </nav>
 
     <main class="main-content">
-        <section class="page-header-pink">
-            <div class="container">
-                <h1 class="page-title">pitching</h1>
-            </div>
+        <section class="page-banner">
+            <p class="eyebrow">on the mound</p>
+            <h1 class="page-title">Pitching</h1>
+            <div class="rule"></div>
         </section>
 
-        <section class="content-section">
-            <div class="container">
-                <div class="pitching-intro">
-                    <h2 class="pitching-heading">what is pitching</h2>
+        <section class="section">
+            <!-- Intro: what is pitching + technique -->
+            <div class="pitch-intro">
+                <div class="lead-card">
+                    <div id="pitching-lead"><p>Loading…</p></div>
                 </div>
-
-                <div class="pitching-description" id="pitching-description">
-                    <p>Loading...</p>
+                <div class="technique">
+                    <h3>the windmill motion</h3>
+                    <ul id="pitching-bullets"><li>Loading…</li></ul>
                 </div>
+            </div>
 
-                <div class="video-grid">
-                    <div class="video-card">
+            <div class="section-head">
+                <p class="section-eyebrow">month by month</p>
+                <h2 class="section-title">My progress</h2>
+                <p class="section-lead">Four months of practice, tracked and refined — here is how my pitching grew.</p>
+            </div>
+
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumb">
                         <video controls class="pitching-video">
                             <source src="media/feb.MP4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <h3 class="video-title">February</h3>
-                        <p class="video-time">Time spent 15 hours</p>
                     </div>
+                    <h3 class="month">February</h3>
+                    <span class="video-time">15 hours</span>
+                    <p class="video-progress" data-month="february">Where it all started — building a consistent base.</p>
+                </div>
 
-                    <div class="video-card">
+                <div class="video-card">
+                    <div class="video-thumb">
                         <video controls class="pitching-video">
                             <source src="media/mar.MP4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <h3 class="video-title">March</h3>
-                        <p class="video-time">Time spent 13 hours</p>
-                        <p class="video-progress" data-month="march">Loading...</p>
                     </div>
+                    <h3 class="month">March</h3>
+                    <span class="video-time">13 hours</span>
+                    <p class="video-progress" data-month="march">Loading…</p>
+                </div>
 
-                    <div class="video-card">
+                <div class="video-card">
+                    <div class="video-thumb">
                         <video controls class="pitching-video">
                             <source src="media/apr.MP4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <h3 class="video-title">April</h3>
-                        <p class="video-time">Time spent 12 hours</p>
-                        <p class="video-progress" data-month="april">Loading...</p>
                     </div>
+                    <h3 class="month">April</h3>
+                    <span class="video-time">12 hours</span>
+                    <p class="video-progress" data-month="april">Loading…</p>
+                </div>
 
-                    <div class="video-card">
+                <div class="video-card">
+                    <div class="video-thumb">
                         <video controls class="pitching-video">
                             <source src="media/may.MP4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
-                        <h3 class="video-title">May</h3>
-                        <p class="video-time">Time spent 14 hours</p>
-                        <p class="video-progress" data-month="may">Loading...</p>
                     </div>
+                    <h3 class="month">May</h3>
+                    <span class="video-time">14 hours</span>
+                    <p class="video-progress" data-month="may">Loading…</p>
                 </div>
             </div>
         </section>
+
+        <div class="floral-band"></div>
     </main>
 
     <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Kayla Culminating Project</p>
+        <div class="footer-inner">
+            <div>
+                <p class="foot-logo">Kayla</p>
+                <p>A culminating project celebrating a season of growth on and off the field.</p>
+            </div>
+            <div>
+                <h4>Explore</h4>
+                <a href="index.html">Reflection</a>
+                <a href="pitching.html">Pitching</a>
+                <a href="about-me.html">About Me</a>
+            </div>
+            <div>
+                <h4>This season</h4>
+                <p>Softball · Pitching</p>
+                <p>February – May 2026</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Kayla Culminating Project · Made with care this spring</p>
         </div>
     </footer>
 
     <script>
-    // Load pitching description
+    // ---- Load "what is pitching" description ----
     fetch('content/pitching-description.txt')
-        .then(response => response.text())
+        .then(r => r.text())
         .then(text => {
-            const container = document.getElementById('pitching-description');
-            // Convert bullet points to HTML list
-            const paragraphs = text.split('\n\n');
-            let html = '';
-
-            paragraphs.forEach(para => {
-                if (para.includes('•')) {
-                    // Convert bullet list
-                    const items = para.split('\n').filter(line => line.includes('•'));
-                    html += '<ul>';
-                    items.forEach(item => {
-                        html += `<li>${item.replace('•', '').trim()}</li>`;
+            const paras = text.trim().split('\n\n');
+            const lead = document.getElementById('pitching-lead');
+            const bulletBox = document.getElementById('pitching-bullets');
+            let leadHTML = '';
+            let bulletHTML = '';
+            paras.forEach(p => {
+                if (p.includes('•')) {
+                    p.split('\n').filter(l => l.includes('•')).forEach(item => {
+                        bulletHTML += `<li>${item.replace('•', '').trim()}</li>`;
                     });
-                    html += '</ul>';
                 } else {
-                    // Regular paragraph, highlight "internal rotation"
-                    const highlighted = para.replace('internal rotation', '<strong>internal rotation</strong>');
-                    html += `<p>${highlighted}</p>`;
+                    leadHTML += `<p>${p.replace('internal rotation', '<strong>internal rotation</strong>')}</p>`;
                 }
             });
-
-            container.innerHTML = html;
+            lead.innerHTML = leadHTML || '<p>—</p>';
+            bulletBox.innerHTML = bulletHTML || '<li>—</li>';
         })
         .catch(err => console.error('Error loading description:', err));
 
-    // Load monthly progress
+    // ---- Load monthly progress ----
     fetch('content/monthly-progress.txt')
-        .then(response => response.text())
+        .then(r => r.text())
         .then(text => {
-            const progressMap = {};
+            const map = {};
             text.split('\n').forEach(line => {
                 if (line.trim()) {
-                    const [month, progress] = line.split(':').map(s => s.trim());
-                    progressMap[month] = progress;
+                    const idx = line.indexOf(':');
+                    map[line.slice(0, idx).trim().toLowerCase()] = line.slice(idx + 1).trim();
                 }
             });
-
-            // Update each video card
-            document.querySelectorAll('[data-month]').forEach(element => {
-                const month = element.getAttribute('data-month');
-                if (progressMap[month]) {
-                    element.textContent = `Improvements: ${progressMap[month]}`;
-                }
+            document.querySelectorAll('[data-month]').forEach(el => {
+                const m = el.getAttribute('data-month');
+                if (map[m]) el.textContent = map[m];
             });
         })
         .catch(err => console.error('Error loading progress:', err));
