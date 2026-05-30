@@ -1,0 +1,4 @@
+kicker: Kayla's culminating project
+script: Welcome to my
+title: Reflection
+subtitle: A look back at the season — my pitching journey, the skills I grew, and the goals that carried me through.

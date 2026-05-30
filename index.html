@@ -24,11 +24,11 @@
     <main class="main-content">
         <!-- Floral hero -->
         <section class="hero">
-            <div class="hero-inner container">
-                <p class="kicker">Kayla's culminating project</p>
-                <p class="hero-script">Welcome to my</p>
-                <h1 class="hero-title">Reflection</h1>
-                <p class="hero-sub">A look back at the season — my pitching journey, the skills I grew, and the goals that carried me through.</p>
+            <div class="hero-inner container" id="hero-content">
+                <p class="kicker">Loading...</p>
+                <p class="hero-script"></p>
+                <h1 class="hero-title"></h1>
+                <p class="hero-sub"></p>
                 <div class="hero-cta">
                     <a href="pitching.html" class="btn btn-primary">View my pitching</a>
                     <a href="about-me.html" class="btn btn-rose">About me</a>
@@ -38,48 +38,19 @@
 
         <!-- SMART goal -->
         <section class="section">
-            <div class="section-head">
-                <p class="section-eyebrow">my season ambition</p>
-                <h2 class="section-title">SMART goal</h2>
-                <p class="section-lead">The framework I used to set a clear, reachable target for my pitching this season.</p>
+            <div class="section-head" id="smart-header">
+                <p class="section-eyebrow">Loading...</p>
+                <h2 class="section-title"></h2>
+                <p class="section-lead"></p>
             </div>
 
-            <div class="smart-grid">
-                <div class="smart-card">
-                    <div class="badge c-sage">S</div>
-                    <h3>Specific</h3>
-                    <p>I will improve my pitching mechanics by fixing my knuckle rotation and increasing my leg drive off the rubber.</p>
-                    <span class="tail c-sage"></span>
-                </div>
-                <div class="smart-card">
-                    <div class="badge c-rose">M</div>
-                    <h3>Measurable</h3>
-                    <p>I will track and improve my overall strike percentage throughout the season.</p>
-                    <span class="tail c-rose"></span>
-                </div>
-                <div class="smart-card">
-                    <div class="badge c-gold">A</div>
-                    <h3>Achievable</h3>
-                    <p>Four months of focused practice is enough time to gain more consistent strikes.</p>
-                    <span class="tail c-gold"></span>
-                </div>
-                <div class="smart-card">
-                    <div class="badge c-blush">R</div>
-                    <h3>Relevant</h3>
-                    <p>Throwing more strikes will help my team win and make me a more reliable pitcher.</p>
-                    <span class="tail c-blush"></span>
-                </div>
-                <div class="smart-card">
-                    <div class="badge c-green">T</div>
-                    <h3>Time-bound</h3>
-                    <p>I will reach my target strike percentage by the end of four months.</p>
-                    <span class="tail c-green"></span>
-                </div>
+            <div class="smart-grid" id="smart-cards">
+                <!-- SMART cards will be loaded here -->
             </div>
 
-            <div class="smart-summary">
-                <p class="label">putting it all together</p>
-                <p>Over the next four months, I will improve my knuckle rotation and leg drive to raise my strike percentage from [current]% to [goal]% by practicing three times a week — making me a more effective pitcher.</p>
+            <div class="smart-summary" id="smart-summary">
+                <p class="label">Loading...</p>
+                <p></p>
             </div>
         </section>
 
@@ -108,5 +79,89 @@
             <p>&copy; 2026 Kayla Culminating Project · Made with care this spring</p>
         </div>
     </footer>
+
+    <script>
+    // Load hero content
+    fetch('content/hero.txt')
+        .then(response => response.text())
+        .then(text => {
+            const content = {};
+            text.split('\n').forEach(line => {
+                if (line.includes(':')) {
+                    const [key, ...valueParts] = line.split(':');
+                    content[key.trim()] = valueParts.join(':').trim();
+                }
+            });
+
+            const hero = document.getElementById('hero-content');
+            hero.querySelector('.kicker').textContent = content.kicker || '';
+            hero.querySelector('.hero-script').textContent = content.script || '';
+            hero.querySelector('.hero-title').textContent = content.title || '';
+            hero.querySelector('.hero-sub').textContent = content.subtitle || '';
+        })
+        .catch(err => console.error('Error loading hero:', err));
+
+    // Load SMART section header
+    fetch('content/smart-section.txt')
+        .then(response => response.text())
+        .then(text => {
+            const content = {};
+            text.split('\n').forEach(line => {
+                if (line.includes(':')) {
+                    const [key, ...valueParts] = line.split(':');
+                    content[key.trim()] = valueParts.join(':').trim();
+                }
+            });
+
+            const header = document.getElementById('smart-header');
+            header.querySelector('.section-eyebrow').textContent = content.eyebrow || '';
+            header.querySelector('.section-title').textContent = content.title || '';
+            header.querySelector('.section-lead').textContent = content.lead || '';
+        })
+        .catch(err => console.error('Error loading section header:', err));
+
+    // Load SMART goal cards
+    fetch('content/smart-goals.txt')
+        .then(response => response.text())
+        .then(text => {
+            const cards = text.split('\n').filter(line => line.trim());
+            const colorClasses = ['c-sage', 'c-rose', 'c-gold', 'c-blush', 'c-green'];
+            let html = '';
+
+            cards.forEach((line, index) => {
+                const [letter, title, description] = line.split('|');
+                const colorClass = colorClasses[index] || 'c-sage';
+                html += `
+                    <div class="smart-card">
+                        <div class="badge ${colorClass}">${letter}</div>
+                        <h3>${title}</h3>
+                        <p>${description}</p>
+                        <span class="tail ${colorClass}"></span>
+                    </div>
+                `;
+            });
+
+            document.getElementById('smart-cards').innerHTML = html;
+        })
+        .catch(err => console.error('Error loading SMART cards:', err));
+
+    // Load SMART summary
+    fetch('content/smart-summary.txt')
+        .then(response => response.text())
+        .then(text => {
+            const content = {};
+            text.split('\n').forEach(line => {
+                if (line.includes(':')) {
+                    const [key, ...valueParts] = line.split(':');
+                    content[key.trim()] = valueParts.join(':').trim();
+                }
+            });
+
+            const summary = document.getElementById('smart-summary');
+            summary.querySelector('.label').textContent = content.label || '';
+            summary.querySelectorAll('p')[1].textContent = content.text || '';
+        })
+        .catch(err => console.error('Error loading summary:', err));
+    </script>
 </body>
 </html>
