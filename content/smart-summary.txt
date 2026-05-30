@@ -1,2 +1,2 @@
 label: putting it all together
-text: Over the next four months, I will improve my knuckle rotation and leg drive to raise my strike percentage from [current]% to [goal]% by practicing three times a week — making me a more effective pitcher.
+text: Over the next four months, I will improve my knuckle rotation and leg drive to raise my strike percentage from 49.87% last season to 60% by practicing three times a week — making me a more effective pitcher.
