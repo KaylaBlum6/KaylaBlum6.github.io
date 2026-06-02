@@ -171,7 +171,7 @@
 
             const summary = document.getElementById('highlight');
             summary.querySelector('.section-highlight').textContent = content.label || '';
-            summary.querySelector('.hero-sub2').textContent = content.reflection || '';
+            summary.querySelector('.hero-sub2').innerHTML = content.reflection || '';
         })
         .catch(err => console.error('Error loading summary:', err));
 
