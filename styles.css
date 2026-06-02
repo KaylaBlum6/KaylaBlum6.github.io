@@ -273,6 +273,12 @@ a { color: inherit; }
     color: var(--rose);
     line-height: 1;
 }
+.section-highlight {
+    font-family: var(--script);
+    font-size: 32px;
+    color: var(--rose);
+    line-height: 1;
+}
 .section-title {
     font-family: var(--serif);
     font-weight: 400;
