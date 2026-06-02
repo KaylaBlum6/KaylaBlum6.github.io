@@ -36,14 +36,6 @@
             </div>
         </section>
 
-        <!-- Reflection -->
-         <section class="section">
-            <div class="section-head" id="highlight">
-                <p class="section-highlight">highlight</p>
-                <p class="hero-sub2"></p>
-            </div>
-         </section>
-
         <!-- SMART goal -->
         <section class="section">
             <div class="section-head" id="smart-header">
@@ -61,6 +53,14 @@
                 <p></p>
             </div>
         </section>
+
+        <!-- Reflection -->
+         <section class="section">
+            <div class="section-head" id="highlight">
+                <p class="section-highlight">Loading...</p>
+                <p class="hero-sub2"></p>
+            </div>
+         </section>        
 
         <div class="floral-band"></div>
     </main>
@@ -106,7 +106,6 @@
             hero.querySelector('.hero-script').textContent = content.script || '';
             hero.querySelector('.hero-title').textContent = content.title || '';
             hero.querySelector('.hero-sub').textContent = content.subtitle || '';
-            hero.querySelector('.hero-sub2').textContent = content.reflection || '';
         })
         .catch(err => console.error('Error loading hero:', err));
 
@@ -153,6 +152,24 @@
             document.getElementById('smart-cards').innerHTML = html;
         })
         .catch(err => console.error('Error loading SMART cards:', err));
+
+    // Load highlight
+    fetch('content/highlight.txt')
+        .then(response => response.text())
+        .then(text => {
+            const content = {};
+            text.split('\n').forEach(line => {
+                if (line.includes(':')) {
+                    const [key, ...valueParts] = line.split(':');
+                    content[key.trim()] = valueParts.join(':').trim();
+                }
+            });
+
+            const summary = document.getElementById('highlight');
+            summary.querySelector('.section-highlight').textContent = content.label || '';
+            summary.querySelector('.hero-sub2').textContent = content.reflection || '';
+        })
+        .catch(err => console.error('Error loading summary:', err));
 
     // Load SMART summary
     fetch('content/smart-summary.txt')
