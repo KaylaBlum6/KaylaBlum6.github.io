@@ -98,6 +98,7 @@
             hero.querySelector('.hero-script').textContent = content.script || '';
             hero.querySelector('.hero-title').textContent = content.title || '';
             hero.querySelector('.hero-sub').textContent = content.subtitle || '';
+            hero.querySelector('.hero-sub').textContent = content.reflection || '';
         })
         .catch(err => console.error('Error loading hero:', err));
 
