@@ -33,6 +33,7 @@
                     <a href="pitching.html" class="btn btn-primary">View my pitching</a>
                     <a href="about-me.html" class="btn btn-rose">About me</a>
                 </div>
+                <p class="hero-sub2"></p>
             </div>
         </section>
 
@@ -98,7 +99,7 @@
             hero.querySelector('.hero-script').textContent = content.script || '';
             hero.querySelector('.hero-title').textContent = content.title || '';
             hero.querySelector('.hero-sub').textContent = content.subtitle || '';
-            hero.querySelector('.hero-sub').textContent = content.reflection || '';
+            hero.querySelector('.hero-sub2').textContent = content.reflection || '';
         })
         .catch(err => console.error('Error loading hero:', err));
 

@@ -215,6 +215,13 @@ a { color: inherit; }
     color: var(--ink-soft);
     line-height: 1.6;
 }
+.hero .hero-sub2 {
+    max-width: 620px;
+    margin: 26px auto 0;
+    font-size: 20px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+}
 .hero-cta {
     display: flex;
     gap: 16px;
