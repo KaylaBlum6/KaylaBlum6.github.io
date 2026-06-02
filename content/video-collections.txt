@@ -1,0 +1,24 @@
+# ============================================================
+#  Pitching video collections
+# ============================================================
+#  This controls the videos that appear when you click
+#  "View collection" on a month card.
+#
+#  HOW TO USE:
+#  1. Put your video files in the matching month folder:
+#        media/feb/   media/mar/   media/apr/   media/may/
+#     The files can be named ANYTHING you like.
+#  2. On the month's line below, list the file names in the
+#     order you want them shown, separated by commas.
+#
+#  Example:
+#     feb: warmup.MP4, full windmill.MP4, IMG_2451.MOV
+#
+#  Lines starting with # are notes and are ignored.
+#  A month left blank simply shows no extra clips.
+# ============================================================
+
+feb: 20260202_203906.mp4, 20260202_204423~2.mp4, 20260223_203145.mp4, 20260223_203639.mp4, 20260228_133019.mp4
+mar: 20260317_194114.mp4, 20260317_194306.mp4, 20260317_195425.mp4, 20260321_133041.mp4, 20260321_133439.mp4, 20260321_134720.mp4, 20260321_135353.mp4, 20260321_135443~2.mp4, 20260328_122911.mp4, 20260328_123018.mp4, 20260328_123059.mp4, 20260328_123148.mp4, 20260328_123236.mp4
+apr: 20260418_135916.mp4
+may: 20260508_184358.mp4, 20260508_184425.mp4, 20260516_080624.mp4, 20260516_080655.mp4

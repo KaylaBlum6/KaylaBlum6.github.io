@@ -47,9 +47,9 @@
             </div>
 
             <div class="video-grid">
-                <div class="video-card">
+                <div class="video-card" data-folder="feb" data-label="February">
                     <div class="video-thumb">
-                        <video controls class="pitching-video">
+                        <video controls class="pitching-video" preload="metadata">
                             <source src="media/feb.MP4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -57,11 +57,12 @@
                     <h3 class="month">February</h3>
                     <span class="video-time">15 hours</span>
                     <p class="video-progress" data-month="february">Where it all started — building a consistent base.</p>
+                    <button type="button" class="collection-toggle" aria-expanded="false">View collection <span class="chev">&#8964;</span></button>
                 </div>
 
-                <div class="video-card">
+                <div class="video-card" data-folder="mar" data-label="March">
                     <div class="video-thumb">
-                        <video controls class="pitching-video">
+                        <video controls class="pitching-video" preload="metadata">
                             <source src="media/mar.MP4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -69,11 +70,12 @@
                     <h3 class="month">March</h3>
                     <span class="video-time">13 hours</span>
                     <p class="video-progress" data-month="march">Loading…</p>
+                    <button type="button" class="collection-toggle" aria-expanded="false">View collection <span class="chev">&#8964;</span></button>
                 </div>
 
-                <div class="video-card">
+                <div class="video-card" data-folder="apr" data-label="April">
                     <div class="video-thumb">
-                        <video controls class="pitching-video">
+                        <video controls class="pitching-video" preload="metadata">
                             <source src="media/apr.MP4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -81,11 +83,12 @@
                     <h3 class="month">April</h3>
                     <span class="video-time">12 hours</span>
                     <p class="video-progress" data-month="april">Loading…</p>
+                    <button type="button" class="collection-toggle" aria-expanded="false">View collection <span class="chev">&#8964;</span></button>
                 </div>
 
-                <div class="video-card">
+                <div class="video-card" data-folder="may" data-label="May">
                     <div class="video-thumb">
-                        <video controls class="pitching-video">
+                        <video controls class="pitching-video" preload="metadata">
                             <source src="media/may.MP4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -93,7 +96,20 @@
                     <h3 class="month">May</h3>
                     <span class="video-time">14 hours</span>
                     <p class="video-progress" data-month="may">Loading…</p>
+                    <button type="button" class="collection-toggle" aria-expanded="false">View collection <span class="chev">&#8964;</span></button>
                 </div>
+            </div>
+
+            <!-- Expanding month collection -->
+            <div id="month-collection" class="month-collection" hidden>
+                <div class="collection-head">
+                    <div>
+                        <p class="collection-eyebrow">full collection</p>
+                        <h3 class="collection-title" id="collection-title">February</h3>
+                    </div>
+                    <button type="button" class="collection-close" id="collection-close" aria-label="Close collection">Close &times;</button>
+                </div>
+                <div class="collection-grid" id="collection-grid"></div>
             </div>
         </section>
 
@@ -164,6 +180,101 @@
             });
         })
         .catch(err => console.error('Error loading progress:', err));
+    </script>
+
+    <script>
+    // ============================================================
+    //  Month video collections
+    //  1. Drop your clips into media/feb, media/mar, media/apr, media/may
+    //     (the files can be named ANYTHING — clip1.MP4, warmup.mov, etc.)
+    //  2. List them in content/video-collections.txt, in display order.
+    //  That text file is the only thing you edit — see it for the format.
+    // ============================================================
+    (function () {
+        const panel = document.getElementById('month-collection');
+        const grid = document.getElementById('collection-grid');
+        const titleEl = document.getElementById('collection-title');
+        const closeBtn = document.getElementById('collection-close');
+        let collections = {};   // folder -> [filenames]
+        let openFolder = null;
+
+        // Load the list of videos for every month from the text file
+        fetch('content/video-collections.txt')
+            .then(r => r.text())
+            .then(text => {
+                text.split('\n').forEach(line => {
+                    line = line.trim();
+                    if (!line || line.startsWith('#')) return;       // skip blanks & comments
+                    const idx = line.indexOf(':');
+                    if (idx === -1) return;
+                    const folder = line.slice(0, idx).trim().toLowerCase();
+                    const files = line.slice(idx + 1)
+                        .split(',')
+                        .map(s => s.trim())
+                        .filter(Boolean);
+                    collections[folder] = files;
+                });
+            })
+            .catch(err => console.error('Error loading video list:', err));
+
+        function clipMarkup(folder, file, n) {
+            const url = `media/${folder}/${file}`;
+            return `
+                <figure class="clip">
+                    <div class="clip-thumb">
+                        <video controls preload="metadata" class="pitching-video">
+                            <source src="${url}">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <figcaption>Clip ${n}</figcaption>
+                </figure>`;
+        }
+
+        function openCollection(card) {
+            const folder = card.dataset.folder;
+            const label = card.dataset.label;
+
+            // toggle off if the same month is clicked again
+            if (openFolder === folder) { closeCollection(); return; }
+            openFolder = folder;
+
+            document.querySelectorAll('.video-card').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.collection-toggle').forEach(b => b.setAttribute('aria-expanded', 'false'));
+            card.classList.add('active');
+            card.querySelector('.collection-toggle').setAttribute('aria-expanded', 'true');
+
+            titleEl.textContent = label;
+            const files = collections[folder] || [];
+            if (files.length) {
+                grid.innerHTML = files.map((f, i) => clipMarkup(folder, f, i + 1)).join('');
+            } else {
+                grid.innerHTML = `<p class="collection-msg">No clips listed yet — add your videos to <strong>media/${folder}/</strong> and list their file names under <strong>${folder}:</strong> in <strong>content/video-collections.txt</strong>.</p>`;
+            }
+
+            panel.hidden = false;
+            panel.classList.add('open');
+
+            // gently bring the panel into view without jumping the whole page
+            const y = panel.getBoundingClientRect().top + window.pageYOffset - 90;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+
+        function closeCollection() {
+            openFolder = null;
+            panel.classList.remove('open');
+            panel.querySelectorAll('video').forEach(v => v.pause());
+            grid.innerHTML = '';
+            panel.hidden = true;
+            document.querySelectorAll('.video-card').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.collection-toggle').forEach(b => b.setAttribute('aria-expanded', 'false'));
+        }
+
+        document.querySelectorAll('.collection-toggle').forEach(btn => {
+            btn.addEventListener('click', () => openCollection(btn.closest('.video-card')));
+        });
+        closeBtn.addEventListener('click', closeCollection);
+    })();
     </script>
 </body>
 </html>
