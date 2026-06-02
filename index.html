@@ -48,19 +48,23 @@
                 <!-- SMART cards will be loaded here -->
             </div>
 
-            <div class="smart-summary" id="smart-summary">
-                <p class="label">Loading...</p>
-                <p></p>
-            </div>
         </section>
 
         <!-- Reflection -->
-         <section class="section">
+        <section class="section">
             <div class="section-head" id="highlight">
                 <p class="section-highlight">Loading...</p>
                 <p class="hero-sub2"></p>
             </div>
-         </section>        
+        </section>
+
+        <!-- SMART summary -->
+        <section class="section">
+            <div class="smart-summary" id="smart-summary">
+                <p class="label">Loading...</p>
+                <p></p>
+            </div>
+        </section>        
 
         <div class="floral-band"></div>
     </main>
@@ -185,7 +189,7 @@
 
             const summary = document.getElementById('smart-summary');
             summary.querySelector('.label').textContent = content.label || '';
-            summary.querySelectorAll('p')[1].textContent = content.text || '';
+            summary.querySelectorAll('p')[1].textContent = content.reflection || '';
         })
         .catch(err => console.error('Error loading summary:', err));
     </script>
