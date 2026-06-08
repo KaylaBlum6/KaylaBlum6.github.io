@@ -194,7 +194,7 @@
 
             const summary = document.getElementById('smart-summary');
             summary.querySelector('.label').textContent = content.label || '';
-            summary.querySelectorAll('p')[1].textContent = content.reflection || '';
+            summary.querySelectorAll('p')[1].innerHTML = content.reflection || '';
         })
         .catch(err => console.error('Error loading summary:', err));
     </script>
